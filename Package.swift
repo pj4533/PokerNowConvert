@@ -9,14 +9,18 @@ let package = Package(
     dependencies: [
         // 💧 A server-side Swift web framework.
         .package(url: "https://github.com/vapor/vapor.git", from: "4.0.0"),
-        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0-rc")
+        .package(url: "https://github.com/vapor/leaf.git", from: "4.0.0-rc"),
+        .package(url: "https://github.com/pj4533/PokerNowKit", from: "0.0.4"),
+        .package(url: "https://github.com/swiftcsv/SwiftCSV", from: "0.0.1")
     ],
     targets: [
         .target(
             name: "App",
             dependencies: [
                 .product(name: "Leaf", package: "leaf"),
-                .product(name: "Vapor", package: "vapor")
+                .product(name: "Vapor", package: "vapor"),
+                .product(name: "PokerNowKit", package: "PokerNowKit"),
+                .product(name: "SwiftCSV", package: "SwiftCSV")
             ],
             swiftSettings: [
                 // Enable better optimizations when building in Release configuration. Despite the use of

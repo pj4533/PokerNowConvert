@@ -47,6 +47,15 @@
         }
       },
       {
+        "package": "PokerNowKit",
+        "repositoryURL": "https://github.com/pj4533/PokerNowKit",
+        "state": {
+          "branch": null,
+          "revision": "fc6251be62ddf50b21cff6783c0c083ba27d1ff0",
+          "version": "0.0.4"
+        }
+      },
+      {
         "package": "routing-kit",
         "repositoryURL": "https://github.com/vapor/routing-kit.git",
         "state": {
@@ -125,6 +134,15 @@
           "branch": null,
           "revision": "d381bc53edd9de88a75480a2b969bfc26d61ee76",
           "version": "2.8.0"
+        }
+      },
+      {
+        "package": "SwiftCSV",
+        "repositoryURL": "https://github.com/swiftcsv/SwiftCSV",
+        "state": {
+          "branch": null,
+          "revision": "8ae14758a2019fd55dc6f9b6ecbbe246bcef179f",
+          "version": "0.5.6"
         }
       },
       {
