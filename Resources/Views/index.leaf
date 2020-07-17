@@ -25,6 +25,10 @@
         <label for="fname">Multiply bets by:</label><input type="text" name="multiplier" value="#(multiplier)">
       </div>
 	</form>
+  <br/>
+  <br/>
+  <br/>
+  <img src="venmo_donate.png">
 
   </body>
 </html>
