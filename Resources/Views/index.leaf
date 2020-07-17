@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>#(title)</title>
+    <style>
+    	textarea {
+        	resize: none;
+    	}
+	</style>
+  </head>
+  <body>
+    <h1>#(body)</h1>
+
+    <form method="POST" action="/logs">
+	    <div class="container">
+			<label for="label">Paste PokerNow.club log here</label><br>
+	    	<textarea cols="100" rows="25" name="raw">#(raw)</textarea>
+	  		<input type="submit" value="Convert">
+		    <textarea cols="100" rows="25" name="converted">#(converted)</textarea>
+	    </div>
+	</form>
+
+  </body>
+</html>
