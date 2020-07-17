@@ -8,7 +8,16 @@ func routes(_ app: Application) throws {
     app.get { req in
         req.view.render("index", [
             "title": "PokerNowConvert",
-            "body": "PokerNow.club Log Converter"
+            "body": "PokerNow.club Log Converter",
+            "multiplier": "0.01"
+        ])
+    }
+
+    app.get("logs") { req in
+        req.view.render("index", [
+            "title": "PokerNowConvert",
+            "body": "PokerNow.club Log Converter",
+            "multiplier": "0.01"
         ])
     }
 
@@ -18,11 +27,10 @@ func routes(_ app: Application) throws {
         var converted : String = ""
         do {
             let csvFile: CSV = try CSV(string: log.raw)
-            
-            
+
             let game = Game(rows: csvFile.namedRows)
             for hand in game.hands {
-                let pokerStarsLines = hand.getPokerStarsDescription(heroName: "pj4533", multiplier: 0.01, tableName: "PokerNowConverter").joined(separator: "\n")
+                let pokerStarsLines = hand.getPokerStarsDescription(heroName: log.heroname, multiplier: Double(log.multiplier) ?? 0.01, tableName: "PokerNowConverter").joined(separator: "\n")
                 converted.append(pokerStarsLines)
                 converted.append("\n")
             }
@@ -36,7 +44,9 @@ func routes(_ app: Application) throws {
             "title": "PokerNowConvert",
             "body": "PokerNow.club Log Converter",
             "raw": log.raw,
-            "converted": converted
+            "converted": converted,
+            "heroname": log.heroname,
+            "multiplier": log.multiplier
         ])
     }
     

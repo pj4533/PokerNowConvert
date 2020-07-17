@@ -14,12 +14,16 @@
     <h1>#(body)</h1>
 
     <form method="POST" action="/logs">
+      <label for="label">Paste PokerNow.club log here</label><br>
 	    <div class="container">
-			<label for="label">Paste PokerNow.club log here</label><br>
-	    	<textarea cols="100" rows="25" name="raw">#(raw)</textarea>
-	  		<input type="submit" value="Convert">
-		    <textarea cols="100" rows="25" name="converted">#(converted)</textarea>
+        <textarea cols="100" rows="25" name="raw">#(raw)</textarea>
+        <input type="submit" value="Convert">
+        <textarea cols="100" rows="25" name="converted">#(converted)</textarea>
 	    </div>
+      <div class="container">
+        <label for="fname">Hero name:</label><input type="text" name="heroname" value="#(heroname)">        
+        <label for="fname">Multiply bets by:</label><input type="text" name="multiplier" value="#(multiplier)">
+      </div>
 	</form>
 
   </body>
