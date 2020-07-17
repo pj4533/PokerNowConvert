@@ -12,7 +12,7 @@ func routes(_ app: Application) throws {
         ])
     }
 
-    app.on(.POST, "logs", body: .collect(maxSize: "1mb")) { req -> EventLoopFuture<Vapor.View> in
+    app.on(.POST, "logs", body: .collect(maxSize: "2mb")) { req -> EventLoopFuture<Vapor.View> in
         let log = try req.content.decode(Log.self)
 
         var converted : String = ""
