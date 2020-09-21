@@ -9,7 +9,7 @@ func routes(_ app: Application) throws {
         req.view.render("index", [
             "title": "PokerNowConvert",
             "body": "PokerNow.club Log Converter",
-            "multiplier": "0.01"
+            "multiplier": "1.0"
         ])
     }
 
@@ -17,7 +17,7 @@ func routes(_ app: Application) throws {
         req.view.render("index", [
             "title": "PokerNowConvert",
             "body": "PokerNow.club Log Converter",
-            "multiplier": "0.01"
+            "multiplier": "1.0"
         ])
     }
 
