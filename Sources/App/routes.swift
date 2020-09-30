@@ -21,16 +21,41 @@ func routes(_ app: Application) throws {
         ])
     }
 
+    app.on(.POST, "download") { req -> EventLoopFuture<Vapor.View> in
+        let log = try req.content.decode(Log.self)
+        let tableId = log.tableurl?.replacingOccurrences(of: "https://www.pokernow.club/games/", with: "") ?? ""
+        var csvText = ""
+        if let skipToken = Environment.get("SKIP_TOKEN") {
+            do {
+                if let url = URL(string: "https://www.pokernow.club/games/\(tableId)/poker_now_log_\(tableId).csv?skip_captcha_token=\(skipToken)") {
+                    csvText = try String(contentsOf: url)                    
+                }
+            } catch let error {
+                print("Error loading file")
+            }
+        } else {
+            print("Error: no skip token found")
+        }
+         return req.view.render("index", [
+            "title": "PokerNowConvert",
+            "body": "PokerNow.club Log Converter",
+            "raw": csvText,
+            "converted": "",
+            "heroname": log.heroname ?? "",
+            "multiplier": log.multiplier ?? "1.0"
+        ])
+    }
+
     app.on(.POST, "logs", body: .collect(maxSize: "4mb")) { req -> EventLoopFuture<Vapor.View> in
         let log = try req.content.decode(Log.self)
 
         var converted : String = ""
         do {
-            let csvFile: CSV = try CSV(string: log.raw)
+            let csvFile: CSV = try CSV(string: log.raw ?? "")
 
             let game = Game(rows: csvFile.namedRows)
             for hand in game.hands {
-                let pokerStarsLines = hand.getPokerStarsDescription(heroName: log.heroname, multiplier: Double(log.multiplier) ?? 0.01, tableName: "PokerNowConverter").joined(separator: "\n")
+                let pokerStarsLines = hand.getPokerStarsDescription(heroName: log.heroname ?? "", multiplier: Double(log.multiplier ?? "1.0") ?? 1.0, tableName: "PokerNowConverter").joined(separator: "\n")
                 converted.append(pokerStarsLines)
                 converted.append("\n")
             }
@@ -43,10 +68,10 @@ func routes(_ app: Application) throws {
          return req.view.render("index", [
             "title": "PokerNowConvert",
             "body": "PokerNow.club Log Converter",
-            "raw": log.raw,
+            "raw": log.raw ?? "",
             "converted": converted,
-            "heroname": log.heroname,
-            "multiplier": log.multiplier
+            "heroname": log.heroname ?? "",
+            "multiplier": log.multiplier ?? "1.0"
         ])
     }
     

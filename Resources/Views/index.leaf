@@ -62,6 +62,20 @@
         </div>        
       </div>
     </form>
+    <br/>
+    <br/>
+    <form method="POST" action="/download" name="logform">
+    <p class="text-sm-left">(Or auto-download the log, no need to paste, but without your hole cards)</p>
+    <div class="row">
+        <div class="input-group input-group-sm col-md-11">
+          <div class="input-group-prepend">
+            <span class="input-group-text" id="inputGroup-sizing-sm">Table URL</span>
+          </div>
+          <input type="text" class="form-control" aria-label="Sizing example input" aria-describedby="inputGroup-sizing-sm" name="tableurl" value="#(tableurl)">
+        </div>        
+          <button type="submit" class="btn btn-primary btn-sm ">Download</button>
+    </div>
+    </form>
   <br/>
     </div>
     <br/>
