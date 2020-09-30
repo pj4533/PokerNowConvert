@@ -3,6 +3,12 @@ import Leaf
 import PokerNowKit
 import SwiftCSV
 
+#if swift(>=4.1)
+     #if canImport(FoundationNetworking)
+         import FoundationNetworking
+     #endif
+ #endif
+ 
 func routes(_ app: Application) throws {
 
     app.get { req in
